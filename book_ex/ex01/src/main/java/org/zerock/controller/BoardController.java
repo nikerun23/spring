@@ -33,7 +33,6 @@ public class BoardController {
 		logger.info(board.toString());
 		
 		service.regist(board);
-		
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";
 	}
@@ -42,7 +41,6 @@ public class BoardController {
 	public String listAll()throws Exception {
 		
 		logger.info("listAll ...............");
-		
 		return "/board/listAll";
 	}
 }
