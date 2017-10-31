@@ -35,7 +35,6 @@ public class BoardController {
 		//service.regist(board);
 		
 		rttr.addFlashAttribute("msg", "success");
-		//return "/board/success";
 		return "redirect:/board/listAll";
 	}
 	
