@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
 
@@ -27,13 +28,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPost(BoardVO board, Model model) throws Exception {
+	public String registerPost(BoardVO board, RedirectAttributes rttr) throws Exception {
 		logger.info("register Post ........");
 		logger.info(board.toString());
 		
-		service.regist(board);
+		//service.regist(board);
 		
-		model.addAttribute("result", "success");
-		return "/board/success";
+		rttr.addFlashAttribute("msg", "success");
+		//return "/board/success";
+		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public String listAll()throws Exception {
+		
+		logger.info("listAll ...............");
+		
+		return "/board/listAll";
 	}
 }
