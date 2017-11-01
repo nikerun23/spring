@@ -8,7 +8,7 @@ public interface BoardService {
 	
 	public void regist(BoardVO board)throws Exception;
 	
-	public void read(Integer bno)throws Exception;
+	public BoardVO read(Integer bno)throws Exception;
 	
 	public void modify(BoardVO board)throws Exception;
 	

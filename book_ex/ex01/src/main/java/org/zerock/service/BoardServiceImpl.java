@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void read(Integer bno) throws Exception {
-		dao.read(bno);
+	public BoardVO read(Integer bno) throws Exception {
+		return dao.read(bno);
 	}
 
 	@Override

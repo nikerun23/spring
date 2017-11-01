@@ -33,10 +33,10 @@
 						<c:forEach items="${list}" var="boardVO">
 						<tr>
 							<td><c:out value="${boardVO.bno}"/></td>
-							<td><a href=""><c:out value="${boardVO.title}"/></a></td>
+							<td><a href="/board/read?bno=${boardVO.bno}"><c:out value="${boardVO.title}"/></a></td>
 							<td><c:out value="${boardVO.writer}"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
-							<td><c:out value="${boardVO.viewcnt}"/></td>
+							<td><span class="badge bg-red"><c:out value="${boardVO.viewcnt}"/></span></td>
 						</tr>
 						</c:forEach>
 					</table>

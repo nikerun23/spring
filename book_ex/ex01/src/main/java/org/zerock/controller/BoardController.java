@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
@@ -46,5 +47,12 @@ public class BoardController {
 		model.addAttribute("list", service.listAll());
 		
 		return "/board/listAll";
+	}
+	
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public String read(@RequestParam("bno") int bno, ModelMap model)throws Exception {
+		
+		model.addAttribute(service.read(bno));
+		return "/board/read";
 	}
 }
