@@ -55,4 +55,16 @@ public class BoardController {
 		model.addAttribute(service.read(bno));
 		return "/board/read";
 	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(BoardVO board)throws Exception {
+		logger.info("modify CALL ............");
+		service.modify(board);
+	}
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	public void remove(@RequestParam("bno") int bno)throws Exception {
+		logger.info("remove CALL ............");
+		service.remove(bno);
+	}
 }

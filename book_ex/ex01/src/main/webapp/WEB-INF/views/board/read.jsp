@@ -11,7 +11,6 @@
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
-
 			<div class="box">
 				<div class="box-header with-border">
 					<h3 class="box-title">READ BOARD</h3>
@@ -35,13 +34,11 @@
 						</div>
 					</div>
 					<!-- /.box-body -->
-
 					<div class="box-footer">
-						<button type="submit" class="btn btn-primary">Modify</button>
+						<button type="submit" class="btn btn-primary">MODIFY</button>
 						<button type="submit" class="btn btn-primary">REMOVE</button>
-						<button type="submit" class="btn btn-primary">KIST ALL</button>
+						<button type="submit" class="btn btn-primary">LIST ALL</button>
 					</div>
-
 			</div>
 		</div>
 		<!--/.col (left) -->
