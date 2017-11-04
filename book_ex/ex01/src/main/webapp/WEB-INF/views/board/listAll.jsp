@@ -8,7 +8,7 @@
 
 <script>
 	var result = '${msg}';
-	if (result == 'success') alert('success'); 
+	if (result == 'success') alert('처리가 완료 되었습니다.'); 
 </script>
 
 <!-- Main content -->

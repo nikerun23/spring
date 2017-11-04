@@ -40,31 +40,45 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public String listAll(ModelMap model)throws Exception {
+	public void listAll(ModelMap model)throws Exception {
 		
 		logger.info("listAll ...............");
 		
 		model.addAttribute("list", service.listAll());
-		
-		return "/board/listAll";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public String read(@RequestParam("bno") int bno, ModelMap model)throws Exception {
+	public void read(@RequestParam("bno") int bno, ModelMap model)throws Exception {
 		
 		model.addAttribute(service.read(bno));
-		return "/board/read";
+	}
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno
+			,RedirectAttributes rttr)throws Exception {
+		logger.info("remove CALL ............");
+		
+		service.remove(bno);
+		rttr.addFlashAttribute("msg", "success");
+		
+		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modifyGET(int bno, ModelMap model)throws Exception {
+		logger.info("modify GET CALL ............");
+
+		model.addAttribute(service.read(bno));
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public void modify(BoardVO board)throws Exception {
-		logger.info("modify CALL ............");
+	public String modifyPOST(BoardVO board,
+			RedirectAttributes rttr)throws Exception {
+		logger.info("modify POST CALL ............");
+		
 		service.modify(board);
-	}
-	
-	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public void remove(@RequestParam("bno") int bno)throws Exception {
-		logger.info("remove CALL ............");
-		service.remove(bno);
+		
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/board/listAll";
 	}
 }
