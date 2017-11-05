@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.service.BoardService;
 
 @Controller
@@ -45,6 +46,14 @@ public class BoardController {
 		logger.info("listAll ...............");
 		
 		model.addAttribute("list", service.listAll());
+	}
+	
+	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
+	public void listAll(Criteria cri, ModelMap model)throws Exception {
+		
+		logger.info("listCriteria...............");
+		
+		model.addAttribute("list", service.listCriteria(cri));
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
