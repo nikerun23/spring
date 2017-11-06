@@ -25,9 +25,8 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerGet() throws Exception {
+	public void registerGet() throws Exception {
 		logger.info("register get ...........");
-		return "/board/register";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

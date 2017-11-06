@@ -13,6 +13,7 @@ public class Criteria {
 	public int getPage() {
 		return page;
 	}
+	
 	public void setPage(int page) {
 		if (page <= 0) {
 			this.page = 1;
@@ -33,6 +34,7 @@ public class Criteria {
 	public int getPerPageNum() {
 		return this.perPageNum;
 	}
+	
 	// method for MyBatis SQL Mapper	
 	public int getPageStart() {
 		return (this.page - 1) * perPageNum;
