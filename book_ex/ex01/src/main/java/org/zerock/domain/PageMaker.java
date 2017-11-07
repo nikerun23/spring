@@ -35,6 +35,35 @@ public class PageMaker {
 		prev = startPage == 1 ? false : true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
+
+	
+	public Criteria getCri() {
+		return cri;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public boolean isPrev() {
+		return prev;
+	}
+
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
 	
 	
 }
