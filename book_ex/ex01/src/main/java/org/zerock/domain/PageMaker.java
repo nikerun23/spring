@@ -32,5 +32,9 @@ public class PageMaker {
 			endPage = totalCountEndPage;
 		}
 		
+		prev = startPage == 1 ? false : true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
+	
+	
 }
