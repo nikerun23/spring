@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
 
 @Controller
@@ -53,6 +54,19 @@ public class BoardController {
 		logger.info("listCriteria...............");
 		
 		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void listPage(Criteria cri, ModelMap model)throws Exception {
+		logger.info("listPage CALL .............");
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(70);
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
