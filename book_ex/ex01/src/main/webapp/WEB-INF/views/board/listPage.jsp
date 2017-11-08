@@ -33,7 +33,7 @@
 						<c:forEach items="${list}" var="boardVO">
 						<tr>
 							<td><c:out value="${boardVO.bno}"/></td>
-							<td><a href="/board/read?bno=${boardVO.bno}"><c:out value="${boardVO.title}"/></a></td>
+							<td><a href="/board/readPage${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}"><c:out value="${boardVO.title}"/></a></td>
 							<td><c:out value="${boardVO.writer}"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
 							<td><span class="badge bg-red"><c:out value="${boardVO.viewcnt}"/></span></td>
@@ -50,7 +50,7 @@
 							
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 							<li <c:out value="${pageMaker.cri.page == idx ? 'class=active':''}"/>>
-								<a href="listPage?page=${idx}">${idx}</a>
+								<a href="listPage${pageMaker.makeQuery(idx)}">${idx}</a>
 							</li>
 							</c:forEach>
 							
