@@ -23,7 +23,10 @@ $(document).ready(function(){
 	});
 	
 	$(".btn-primary").on("click", function(){
-		self.location = "/board/listAll";
+		//self.location = "/board/listAll";
+		frmObj.attr("action", "/board/listPage");
+		frmObj.attr("method", "get");
+		frmObj.submit();
 	});
 	
 });
@@ -40,8 +43,8 @@ $(document).ready(function(){
 					<h3 class="box-title">READ BOARD</h3>
 				</div>
 
-				<form role="form" method="post">
-					<input type="hidden" name="bno" value="${boardVO.bno}">
+				<form role="form" action="modifyPage" method="post">
+					<%-- <input type="hidden" name="bno" value="${boardVO.bno}"> --%>
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 				</form>
@@ -64,7 +67,7 @@ $(document).ready(function(){
 					<div class="box-footer">
 						<button type="submit" class="btn btn-warning">Modify</button>
 						<button type="submit" class="btn btn-danger">REMOVE</button>
-						<button type="submit" class="btn btn-primary">LIST ALL</button>
+						<button type="submit" class="btn btn-primary">LIST PAGE</button>
 					</div>
 			</div>
 		</div>
