@@ -7,27 +7,15 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+
 	var frmObj = $("form[role='form']");
 	
-	console.log(frmObj);
-	
-	$(".btn-warning").on("click", function(){
-		frmObj.attr("action", "/board/modifyPage");
-		frmObj.attr("method", "get");
-		frmObj.submit();
-	});
-	
-	$(".btn-danger").on("click", function(){
-		frmObj.attr("action", "/board/removePage");
-		frmObj.attr("method", "get");
-		frmObj.submit();
-	});
-	
 	$(".btn-primary").on("click", function(){
-		//self.location = "/board/listAll";
-		frmObj.attr("action", "/board/listPage");
-		frmObj.attr("method", "get");
 		frmObj.submit();
+	});
+	$(".btn-warnig").on("click", function(){
+		//self.location = "/board/listPage";
+		self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
 	});
 	
 });
@@ -41,34 +29,38 @@ $(document).ready(function(){
 			<!-- general form elements -->
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">READ BOARD</h3>
+					<h3 class="box-title">MODIFY BOARD</h3>
 				</div>
-
 				<form role="form" action="modifyPage" method="post">
-					<input type="hidden" name="bno" value="${boardVO.bno}">
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
-				</form>
-				
+					
 					<div class="box-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Title</label> <input type="text"
-								name='title' class="form-control" value="${boardVO.title}" readonly="readonly">
+							<label for="exampleInputEmail1">BNO</label> <input type="text"
+								name='bno' class="form-control" value="${boardVO.bno}" readonly="readonly">
 						</div>
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1">Title</label> <input type="text"
+								name='title' class="form-control" value="${boardVO.title}">
+						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputPassword1">Content</label>
-							<textarea class="form-control" name="content" rows="3" readonly="readonly">${boardVO.content}</textarea>
+							<textarea class="form-control" name="content" rows="3">${boardVO.content}</textarea>
 						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Writer</label> <input type="text"
-								name="writer" class="form-control" value="${boardVO.writer}" readonly="readonly">
+								name="writer" class="form-control" value="${boardVO.writer}">
 						</div>
 					</div>
+				</form>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<button type="submit" class="btn btn-warning">Modify</button>
-						<button type="submit" class="btn btn-danger">REMOVE</button>
-						<button type="submit" class="btn btn-primary">LIST PAGE</button>
+						<button type="submit" class="btn btn-primary">SAVE</button>
+						<button type="submit" class="btn btn-warnig">CANCLE</button>
 					</div>
 			</div>
 		</div>

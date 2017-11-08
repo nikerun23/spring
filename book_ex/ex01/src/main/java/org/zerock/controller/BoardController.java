@@ -84,9 +84,22 @@ public class BoardController {
 		model.addAttribute(service.read(bno));
 	}
 	
+	@RequestMapping(value = "/removePage", method = RequestMethod.GET)
+	public String removePage(@RequestParam("bno") int bno
+			, Criteria cri
+			, RedirectAttributes rttr)throws Exception {
+		logger.info("remove CALL ............");
+		
+		service.remove(bno);
+		rttr.addFlashAttribute("msg", "success");
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		
+		return "redirect:/board/listPage";
+	}
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("bno") int bno
-			,RedirectAttributes rttr)throws Exception {
+			, RedirectAttributes rttr)throws Exception {
 		logger.info("remove CALL ............");
 		
 		service.remove(bno);
@@ -95,6 +108,14 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
+	public void modifyGET(int bno
+			, @ModelAttribute("cri") Criteria cri
+			, ModelMap model)throws Exception {
+		logger.info("modify GET CALL ............");
+
+		model.addAttribute(service.read(bno));
+	}
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET(int bno, ModelMap model)throws Exception {
 		logger.info("modify GET CALL ............");
@@ -102,14 +123,29 @@ public class BoardController {
 		model.addAttribute(service.read(bno));
 	}
 	
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(BoardVO board,
-			RedirectAttributes rttr)throws Exception {
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
+	public String modifyPOST(BoardVO board
+			, Criteria cri
+			, RedirectAttributes rttr)throws Exception {
 		logger.info("modify POST CALL ............");
 		
 		service.modify(board);
 		
 		rttr.addFlashAttribute("msg", "success");
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		
+		return "redirect:/board/listPage";
+	}
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPOST(BoardVO board
+			, RedirectAttributes rttr)throws Exception {
+		logger.info("modify POST CALL ............");
+		
+		service.modify(board);
+		
+		rttr.addFlashAttribute("msg", "success");
+		
 		return "redirect:/board/listAll";
 	}
 }
