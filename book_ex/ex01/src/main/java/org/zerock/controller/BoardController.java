@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +42,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAll(ModelMap model)throws Exception {
+	public void listAll(Model model)throws Exception {
 		
 		logger.info("listAll ...............");
 		
@@ -50,7 +50,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
-	public void listAll(Criteria cri, ModelMap model)throws Exception {
+	public void listAll(Criteria cri, Model model)throws Exception {
 		
 		logger.info("listCriteria...............");
 		
@@ -58,7 +58,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void listPage(Criteria cri, ModelMap model)throws Exception {
+	public void listPage(Criteria cri, Model model)throws Exception {
 		logger.info("listPage CALL .............");
 		
 		model.addAttribute("list", service.listCriteria(cri));
@@ -73,13 +73,13 @@ public class BoardController {
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void readPage(@RequestParam("bno") int bno
 			, @ModelAttribute("cri") Criteria cri
-			, ModelMap model)throws Exception {
+			, Model model)throws Exception {
 		
 		model.addAttribute(service.read(bno));
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, ModelMap model)throws Exception {
+	public void read(@RequestParam("bno") int bno, Model model)throws Exception {
 		
 		model.addAttribute(service.read(bno));
 	}
@@ -111,13 +111,13 @@ public class BoardController {
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyGET(int bno
 			, @ModelAttribute("cri") Criteria cri
-			, ModelMap model)throws Exception {
+			, Model model)throws Exception {
 		logger.info("modify GET CALL ............");
 
 		model.addAttribute(service.read(bno));
 	}
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(int bno, ModelMap model)throws Exception {
+	public void modifyGET(int bno, Model model)throws Exception {
 		logger.info("modify GET CALL ............");
 
 		model.addAttribute(service.read(bno));
