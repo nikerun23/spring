@@ -9,6 +9,21 @@
 <script>
 	var result = '${msg}';
 	if (result == 'success') alert('처리가 완료 되었습니다.'); 
+	
+	$(document).ready(function(){
+		$('#searchBtn').on("click", function(event){
+			self.location = "list"
+				+ '${pageMaker.makeQuery(1)}'
+				+ "&searchType="
+				+ $("select option:selected").val()
+				+ "&keyword="
+				+ $("#keywordInput").val();
+		});
+		
+		$("#newBtn").on("click", function(event){
+			self.location = "register";
+		});
+	});
 </script>
 
 <!-- Main content -->
@@ -47,7 +62,7 @@
 						<c:forEach items="${list}" var="boardVO">
 						<tr>
 							<td><c:out value="${boardVO.bno}"/></td>
-							<td><a href="/board/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}"><c:out value="${boardVO.title}"/></a></td>
+							<td><a href="/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}"><c:out value="${boardVO.title}"/></a></td>
 							<td><c:out value="${boardVO.writer}"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
 							<td><span class="badge bg-red"><c:out value="${boardVO.viewcnt}"/></span></td>
@@ -59,17 +74,17 @@
 					<div class="text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev == true}">
-							<li><a href="listPage?page=${pageMaker.startPage - 1}">&laquo</a></li>
+							<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo</a></li>
 							</c:if>
 							
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 							<li <c:out value="${pageMaker.cri.page == idx ? 'class=active':''}"/>>
-								<a href="listPage${pageMaker.makeSearch(idx)}">${idx}</a>
+								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
 							</li>
 							</c:forEach>
 							
 							<c:if test="${pageMaker.next == true}">
-							<li><a href="listPage?page=${pageMaker.endPage + 1}">&raquo</a></li>
+							<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo</a></li>
 							</c:if>
 						</ul>
 					</div>
