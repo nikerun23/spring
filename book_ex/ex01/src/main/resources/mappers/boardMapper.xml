@@ -77,6 +77,31 @@
 			bno, title, content, writer, regdate, viewcnt
 		from tbl_board
 		where bno > 0
+		]]>
+		<if test="searchType != null">
+			<choose>
+				<when test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+				</when>
+				<when test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+				</when>
+				<when test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+				</when>
+				<when test="searchType == 'tc'.toString()">
+				and (title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+				</when>
+				<when test="searchType == 'cw'.toString()">
+				and (content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
+				</when>
+				<when test="searchType == 'tcw'.toString()">
+				and (title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
+				</when>
+			</choose>
+		</if>
+		
+		<![CDATA[
 		order by bno desc, regdate desc
 		limit #{pageStart}, ${perPageNum}
 		]]>
