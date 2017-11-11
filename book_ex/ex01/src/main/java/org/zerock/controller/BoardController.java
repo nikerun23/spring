@@ -138,6 +138,7 @@ public class BoardController {
 		
 		return "redirect:/board/listPage";
 	}
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardVO board
 			, RedirectAttributes rttr)throws Exception {
