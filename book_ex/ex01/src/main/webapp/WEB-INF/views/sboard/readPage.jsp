@@ -12,20 +12,19 @@ $(document).ready(function(){
 	console.log(frmObj);
 	
 	$(".btn-warning").on("click", function(){
-		frmObj.attr("action", "/board/modifyPage");
+		frmObj.attr("action", "/sboard/modifyPage");
 		frmObj.attr("method", "get");
 		frmObj.submit();
 	});
 	
 	$(".btn-danger").on("click", function(){
-		frmObj.attr("action", "/board/removePage");
+		frmObj.attr("action", "/sboard/removePage");
 		frmObj.attr("method", "get");
 		frmObj.submit();
 	});
 	
 	$(".btn-primary").on("click", function(){
-		//self.location = "/board/listAll";
-		frmObj.attr("action", "/board/listPage");
+		frmObj.attr("action", "/sboard/list");
 		frmObj.attr("method", "get");
 		frmObj.submit();
 	});

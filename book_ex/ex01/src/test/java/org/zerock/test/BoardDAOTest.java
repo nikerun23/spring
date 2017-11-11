@@ -115,7 +115,7 @@ public class BoardDAOTest {
 		cri.setKeyword("내용");
 		
 		logger.info("======================================");
-		List<BoardVO> list = dao.listSearch(cri);
+		List<BoardVO> list = dao.listSearchCriteria(cri);
 		
 		logger.info("======================================");
 		logger.info("Count : " + dao.listSearchCount(cri));

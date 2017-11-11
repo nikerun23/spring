@@ -78,6 +78,28 @@
 		from tbl_board
 		where bno > 0
 		]]>
+		
+		<include refid="search"></include>
+		
+		<![CDATA[
+		order by bno desc, regdate desc
+		limit #{pageStart}, ${perPageNum}
+		]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[
+		select 
+			count(bno)
+		from tbl_board
+		where bno > 0
+		]]>
+		
+		<include refid="search"></include>
+		
+	</select>
+	
+	<sql id="search">
 		<if test="searchType != null">
 			<choose>
 				<when test="searchType == 't'.toString()">
@@ -100,19 +122,5 @@
 				</when>
 			</choose>
 		</if>
-		
-		<![CDATA[
-		order by bno desc, regdate desc
-		limit #{pageStart}, ${perPageNum}
-		]]>
-	</select>
-	
-	<select id="listSearchCount" resultType="int">
-		<![CDATA[
-		select 
-			count(bno)
-		from tbl_board
-		where bno > 0
-		]]>
-	</select>
+	</sql>
 </mapper>

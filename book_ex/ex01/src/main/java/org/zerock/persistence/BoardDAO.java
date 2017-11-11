@@ -24,7 +24,7 @@ public interface BoardDAO {
 	
 	public int listTotalCount(Criteria cri)throws Exception;
 	
-	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri)throws Exception;
 	
 	public int listSearchCount(SearchCriteria cri)throws Exception;
 

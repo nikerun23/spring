@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.service.BoardService;
@@ -28,12 +29,20 @@ public class SearchBoardController {
 		
 		logger.info(cri.toString());
 		
-		model.addAttribute("list", service.listCriteria(cri));
+		model.addAttribute("list", service.listSearchCriteria(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listTotalCount(cri));
+		pageMaker.setTotalCount(service.listSearchCount(cri));
 		
 		model.addAttribute(pageMaker);
+	}
+	
+	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void readPage(@ModelAttribute("cri") SearchCriteria cri
+			, @RequestParam("bno") int bno
+			, Model model)throws Exception {
+		
+		model.addAttribute(service.read(bno));
 	}
 }
