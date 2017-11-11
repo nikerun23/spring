@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.domain.BoardVO;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.service.BoardService;
@@ -57,6 +58,52 @@ public class SearchBoardController {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		rttr.addFlashAttribute("msg", "success");
+		
+		return "redirect:/sboard/list";
+	}
+	
+	@RequestMapping( value = "/modifyPage", method = RequestMethod.GET)
+	public void modifyPageGet(@RequestParam("bno") int bno
+			, @ModelAttribute("cri") SearchCriteria cri
+			, Model model)throws Exception {
+		
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
+	public String modifyPagePost(BoardVO boardVO
+			, SearchCriteria cri
+			, RedirectAttributes rttr)throws Exception {
+		
+		logger.info(cri.toString());
+		
+		service.modify(boardVO);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		rttr.addFlashAttribute("msg", "success");
+		
+		logger.info(rttr.toString());
+		
+		return "redirect:/sboard/list";
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void registerGet() {
+		logger.info("register GET ...........");
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerPost(BoardVO boardVO
+			, RedirectAttributes rttr)throws Exception {
+		logger.info("register POST ...........");
+		
+		service.regist(boardVO);
 		
 		rttr.addFlashAttribute("msg", "success");
 		
