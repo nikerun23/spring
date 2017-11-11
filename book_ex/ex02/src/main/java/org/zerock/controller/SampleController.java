@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Sample2VO;
@@ -57,6 +59,27 @@ public class SampleController {
 		}
 		
 		return map;
+	}
+	
+	@RequestMapping("/sendErrorAuth")
+	public ResponseEntity<Void> sendListAuth() {
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@RequestMapping("/sendErrorNot")
+	public ResponseEntity<List<Sample2VO>> sendListNot() {
+		List<Sample2VO> list = new ArrayList<>();
+		
+		for (int i = 0; i < 10; i++) {
+			Sample2VO vo = new Sample2VO();
+			vo.setFirstName("Hyunkeun");
+			vo.setLastName("Lee");
+			vo.setMno(123);
+			list.add(vo);
+		}
+		
+		return new ResponseEntity<>(list, HttpStatus.NOT_FOUND);
 	}
 
 }
