@@ -14,5 +14,4 @@ public interface ReplyDAO {
 	
 	public void  delete(Integer rno) throws Exception;
 	
-	
 }

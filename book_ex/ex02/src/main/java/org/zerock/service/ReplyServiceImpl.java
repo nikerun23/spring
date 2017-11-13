@@ -16,8 +16,7 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Override
 	public void addReply(ReplyVO vo) throws Exception {
-		// TODO Auto-generated method stub
-
+		dao.create(vo);
 	}
 
 	@Override

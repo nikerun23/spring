@@ -18,25 +18,22 @@ public class ReplyDAOImpl implements ReplyDAO {
 	
 	@Override
 	public List<ReplyVO> list(Integer bno) throws Exception {
-		return session.selectList(namespace+".list");
+		return session.selectList(namespace+".list", bno);
 	}
 
 	@Override
 	public void create(ReplyVO vo) throws Exception {
-		// TODO Auto-generated method stub
-
+		session.insert(namespace+".create");
 	}
 
 	@Override
 	public void update(ReplyVO vo) throws Exception {
-		// TODO Auto-generated method stub
-
+		session.update(namespace+".update", vo);
 	}
 
 	@Override
 	public void delete(Integer rno) throws Exception {
-		// TODO Auto-generated method stub
-
+		session.delete(namespace+".delete", rno);
 	}
 
 }
