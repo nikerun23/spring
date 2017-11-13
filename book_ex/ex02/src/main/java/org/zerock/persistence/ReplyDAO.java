@@ -12,7 +12,7 @@ public interface ReplyDAO {
 	
 	public void  update(ReplyVO vo) throws Exception;
 	
-	public void  delete(ReplyVO vo) throws Exception;
+	public void  delete(Integer rno) throws Exception;
 	
 	
 }
