@@ -6,7 +6,7 @@ public class ReplyVO {
 
 	private Integer rno;
 	private Integer bno;
-	private String replyText;
+	private String replytext;
 	private String replyer;
 	
 	private Date regdate;
@@ -23,11 +23,11 @@ public class ReplyVO {
 	public void setBno(Integer bno) {
 		this.bno = bno;
 	}
-	public String getReplyText() {
-		return replyText;
+	public String getReplytext() {
+		return replytext;
 	}
-	public void setReplyText(String replyText) {
-		this.replyText = replyText;
+	public void setReplytext(String replytext) {
+		this.replytext = replytext;
 	}
 	public String getReplyer() {
 		return replyer;
