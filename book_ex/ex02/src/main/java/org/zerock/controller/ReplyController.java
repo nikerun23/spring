@@ -46,5 +46,19 @@ public class ReplyController {
 		return entity;
 	}
 	
+	@RequestMapping(value = "/{rno}", method = RequestMethod.PUT)
+	public ResponseEntity<String> update(@PathVariable("rno") Integer rno
+			, @RequestBody ReplyVO vo) throws Exception {
+		
+		ResponseEntity<String> entity = null;
+		try {
+			service.modifyReply(vo);
+			entity = new ResponseEntity<>("SUCCSS", HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 	
 }
