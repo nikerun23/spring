@@ -46,16 +46,32 @@ public class ReplyController {
 		return entity;
 	}
 	
-	@RequestMapping(value = "/{rno}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{rno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	public ResponseEntity<String> update(@PathVariable("rno") Integer rno
-			, @RequestBody ReplyVO vo) throws Exception {
+			, @RequestBody ReplyVO vo) {
 		
 		ResponseEntity<String> entity = null;
 		try {
+			vo.setRno(rno);
 			service.modifyReply(vo);
 			entity = new ResponseEntity<>("SUCCSS", HttpStatus.OK);
 		} catch (Exception e) {
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable("rno") Integer rno) {
+		
+		ResponseEntity<String> entity = null;
+		try {
+			service.removeReply(rno);
+			entity = new ResponseEntity<>("SUCCSS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
