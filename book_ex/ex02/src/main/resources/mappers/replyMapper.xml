@@ -32,4 +32,16 @@
 		where rno = #{rno}
 	</delete>
 	
+	<select id="listPage" resultType="ReplyVO">
+		select
+		*
+		from tbl_reply
+		whrer bno = #{bno}
+		order by rno desc
+		limit #{cri.pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(bno) from tbl_reply whrer bno = #{bno}
+	</select>
 </mapper>
