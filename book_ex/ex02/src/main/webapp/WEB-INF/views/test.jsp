@@ -20,6 +20,28 @@
 		padding : 10px;
 		z-index : 1000;
 	}
+	
+	.pagination {
+	  width: 100%;
+	}
+	
+	.pagination li{
+	  list-style: none;
+	  float: left; 
+	  padding: 3px; 
+	  border: 1px solid blue;
+	  margin:3px;  
+	}
+	
+	.pagination li a{
+	  margin: 3px;
+	  text-decoration: none;  
+	}
+	
+	.pagination li.active{
+	  border: 1px solid red;
+	}
+
 </style>
 </head>
 <body>
@@ -30,7 +52,8 @@
 	<button id="replyAddBtn">ADD REPLY</button>
 	
 	<ul id="replies">
-
+	</ul>
+	<ul class='pagination'>
 	</ul>
 
 	<div id="modDiv" style="display: none;">
@@ -51,6 +74,8 @@
 	
 	<script>
 		var bno = 7;
+		var replyPage = 1;
+		getPageList(1);
 		
 		function getAllList() {
 			$.getJSON("/replies/all/" + bno, function(data){
@@ -65,7 +90,40 @@
 				$("#replies").html(str);
 			});
 		}
-		getAllList();
+		function getPageList(page) {
+			$.getJSON("/replies/"+bno+"/"+page, function(data){
+				console.log(data.list.length);
+				
+				var str = "";
+				
+				$(data.list).each(function(){
+					str += "<li data-rno='"+ this.rno + "' class='replyLi'>"
+					+this.rno+" : "+this.replytext
+					+"<button>MOD</button></li>"
+				});
+				$("#replies").html(str);
+				
+				printPaging(data.pageMaker);
+			});
+			
+		}
+		function printPaging(pageMaker) {
+			var str = "";
+			
+			if (pageMaker.prev) {
+				str += "<li><a href='"+(pageMaker.startPage-1)+"'> << </a></li>";
+			}
+			
+			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++ ) {
+				var strClass = pageMaker.cri.page == i ? 'class=active':'';
+				str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>"
+			}
+			
+			if (pageMaker.next) {
+				str += "<li><a href='"+(pageMaker.endPage+1)+"'> >> </a></li>";
+			}
+			$(".pagination").html(str);
+		}
 		
 		$("#replies").on("click", ".replyLi button", function(){
 			var reply = $(this).parent();
@@ -99,7 +157,8 @@
 				success : function(result) {
 					if (result == 'SUCCESS') {
 						alert("등록 되었습니다.");
-						getAllList();
+						//getAllList();
+						getPageList(replyPage);
 					}
 				}
 			});
@@ -121,10 +180,40 @@
 					if (result == 'SUCCESS') {
 						alert("삭제 되었습니다.");
 						$("#modDiv").hide("slow");
-						getAllList();
+						//getAllList();
+						getPageList(replyPage);
 					}
 				}
 			});
+		});
+		
+		$(".replyModBtn").on("click", function(){
+			var rno = $(".modal-Title").html();
+			var replytext = $("#replytext").val();
+			$.ajax({
+				type : 'modify',
+				url : '/replies/' + rno,
+				headers : {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "PUT"
+				},
+				data : JSON.stringify({replytext : replytext}),
+				success : function(result) {
+					console.log(result);
+					if (result == 'SUCCESS') {
+						alert("수정 되었습니다.");
+						$("#modDiv").hide("slow");
+						//getAllList();
+						getPageList(replyPage);
+					}
+				}
+			});
+		});
+		
+		$(".pagination").on("click", "li a", function(){
+			event.preventDefault(); // a태그의 기본 동작을 막는다.
+			replyPage = $(this).attr("href");
+			getPageList(replyPage);
 		});
 		
 	</script>
