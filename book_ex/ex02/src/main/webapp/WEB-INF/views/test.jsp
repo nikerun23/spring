@@ -77,19 +77,6 @@
 		var replyPage = 1;
 		getPageList(1);
 		
-		function getAllList() {
-			$.getJSON("/replies/all/" + bno, function(data){
-				console.log(data.length);
-			
-				var str = "";
-				$(data).each(function(){
-					str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ this.rno+" : " + this.replytext
-					+ "<button>NOD</button></li>"
-				});
-				$("#replies").html(str);
-			});
-		}
 		function getPageList(page) {
 			$.getJSON("/replies/"+bno+"/"+page, function(data){
 				console.log(data.list.length);
@@ -113,12 +100,10 @@
 			if (pageMaker.prev) {
 				str += "<li><a href='"+(pageMaker.startPage-1)+"'> << </a></li>";
 			}
-			
 			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++ ) {
 				var strClass = pageMaker.cri.page == i ? 'class=active':'';
 				str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>"
 			}
-			
 			if (pageMaker.next) {
 				str += "<li><a href='"+(pageMaker.endPage+1)+"'> >> </a></li>";
 			}
@@ -131,7 +116,6 @@
 			var rno = reply.attr("data-rno");
 			//var replytext = reply.text();
 			var replytext = reply.find("span").text();
-			
 			
 			$(".modal-Title").html(rno);
 			$("#replytext").val(replytext);
@@ -223,6 +207,20 @@
 			getPageList(replyPage);
 		});
 		
+		/* OLD VERSION */
+		function getAllList() {
+			$.getJSON("/replies/all/" + bno, function(data){
+				console.log(data.length);
+			
+				var str = "";
+				$(data).each(function(){
+					str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+					+ this.rno+" : " + this.replytext
+					+ "<button>NOD</button></li>"
+				});
+				$("#replies").html(str);
+			});
+		}
 	</script>
 
 </body>
