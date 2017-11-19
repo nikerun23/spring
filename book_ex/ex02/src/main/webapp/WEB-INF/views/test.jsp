@@ -23,8 +23,8 @@
 	
 	<script>
 	
+		var bno = 7;
 		function getAllList() {
-			var bno = 7;
 			$.getJSON("/replies/all/" + bno, function(data){
 				console.log(data.length);
 			
@@ -34,19 +34,18 @@
 					+ this.rno + " : " + this.replytext
 					+ "</li>"
 				});
-				
 				$("#replies").html(str);
 			});
 		}
 		
 		$("#replyAddBtn").on("click", function(){
 			var replyer = $("#newReplyWriter").val();
-			var replyetext = $("#newReplyText").val();
+			var replytext = $("#newReplyText").val();
 			
 			$.ajax({
 				type : 'post',
 				url : '/replies',
-				header : {
+				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "POST"
 				},
@@ -54,11 +53,12 @@
 				data : JSON.stringify({
 					bno : bno,
 					replyer : replyer,
-					replyetext : replyetext
+					replytext : replytext
 				}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
 						alert("등록 되었습니다.");
+						getAllList();
 					}
 				}
 			});
