@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -86,8 +88,23 @@ public class ReplyController {
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		try {
+			Criteria cri = new Criteria();
+			cri.setPage(page);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			
 			Map<String, Object> map = new HashMap<>();
+			List<ReplyVO> list = service.listPage(bno, cri);
+			map.put("list", list);
+			
+			int replyCount = service.count(bno);
+			pageMaker.setTotalCount(replyCount);
+			
+			map.put("pageMaker", pageMaker);
+			
 			entity = new ResponseEntity<>(map, HttpStatus.OK);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

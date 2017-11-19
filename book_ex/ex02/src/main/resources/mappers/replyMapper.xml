@@ -36,12 +36,12 @@
 		select
 		*
 		from tbl_reply
-		whrer bno = #{bno}
+		where bno = #{bno}
 		order by rno desc
-		limit #{cri.pageStart}, #{perPageNum}
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="count" resultType="int">
-		select count(bno) from tbl_reply whrer bno = #{bno}
+		select count(bno) from tbl_reply where bno = #{bno}
 	</select>
 </mapper>
