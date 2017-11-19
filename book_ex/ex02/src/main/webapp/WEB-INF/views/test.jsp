@@ -64,7 +64,7 @@
 		<div>
 			<button type="button" class="replyModBtn">Modify</button>
 			<button type="button" class="replyDelBtn">Delete</button>
-			<button type="button" class="clodeBtn">Close</button>
+			<button type="button" class="closeBtn">Close</button>
 		</div>
 	</div>
 
@@ -84,7 +84,7 @@
 				var str = "";
 				$(data).each(function(){
 					str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ this.rno + " : " + this.replytext
+					+ this.rno+" : " + this.replytext
 					+ "<button>NOD</button></li>"
 				});
 				$("#replies").html(str);
@@ -98,8 +98,8 @@
 				
 				$(data.list).each(function(){
 					str += "<li data-rno='"+ this.rno + "' class='replyLi'>"
-					+this.rno+" : "+this.replytext
-					+"<button>MOD</button></li>"
+					+ this.rno + " : " + "<span>" + this.replytext + "</span>"
+					+ "<button>MOD</button></li>"
 				});
 				$("#replies").html(str);
 				
@@ -129,7 +129,9 @@
 			var reply = $(this).parent();
 			
 			var rno = reply.attr("data-rno");
-			var replytext = reply.text();
+			//var replytext = reply.text();
+			var replytext = reply.find("span").text();
+			
 			
 			$(".modal-Title").html(rno);
 			$("#replytext").val(replytext);
@@ -191,13 +193,14 @@
 			var rno = $(".modal-Title").html();
 			var replytext = $("#replytext").val();
 			$.ajax({
-				type : 'modify',
+				type : 'put',
 				url : '/replies/' + rno,
 				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "PUT"
 				},
 				data : JSON.stringify({replytext : replytext}),
+				dataType : 'text',
 				success : function(result) {
 					console.log(result);
 					if (result == 'SUCCESS') {
@@ -208,6 +211,10 @@
 					}
 				}
 			});
+		});
+		
+		$(".closeBtn").on("click", function(){
+			$("#modDiv").hide("slow");
 		});
 		
 		$(".pagination").on("click", "li a", function(){
