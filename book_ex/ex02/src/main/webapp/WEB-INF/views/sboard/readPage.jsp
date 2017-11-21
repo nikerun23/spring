@@ -116,11 +116,38 @@ Handlebars.registerHelper("prettifyDate", function(timeValue){
 	return year+"/"+month+"/"+date;
 });
 
-var prinDate = function (replyArr, target, templateObject) {
+var printDate = function(replyArr, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html());
 	var html = template(replyArr);
 	$(".replyLi").remove();
 	target.after(html);
+}
+
+var bno = ${boardVO.bno};
+var replyPage = 1;
+
+function getPage(pageInfo) {
+	$.getJSON(pageInfo, function(data){
+		printDate(data.List, $("#repliesDiv"), $("#template"));
+		printPaging(data.pageMaker, $("#pagination"));
+	});
+	
+	var printPaging = function(pageMaker, target) {
+		
+		var str = "";
+		if(pageMaker.prev) {
+			str += "<li><a href='" + (pageMaker.startPage - 1) + "'> << </a></li>";
+		}
+		for(var i=pageMaker.startPage, len=pageMaker.endPage; i <= len; i++) {
+			var strClass = pageMaker.cri.page == i ? 'class=active' : '';
+			str += "<li" + strClass + ""><a href='" + i + "'>" + i + "</a></li>";
+		}
+		if(pageMaker.next) {
+			str += "<li><a href='" + (pageMaker.endPage + 1) + "'> >> </a></li>";
+		}
+		
+		taget.hmt(str);
+	}
 }
 </script>
 
