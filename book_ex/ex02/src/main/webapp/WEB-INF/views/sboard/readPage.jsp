@@ -4,34 +4,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="../include/header.jsp"%>
-<script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
-$(document).ready(function(){
-	var frmObj = $("form[role='form']");
-	
-	console.log(frmObj);
-	
-	$(".btn-warning").on("click", function(){
-		frmObj.attr("action", "/sboard/modifyPage");
-		frmObj.attr("method", "get");
-		frmObj.submit();
-	});
-	
-	$(".btn-danger").on("click", function(){
-		frmObj.attr("action", "/sboard/removePage");
-		frmObj.attr("method", "get");
-		frmObj.submit();
-	});
-	
-	$(".btn-primary").on("click", function(){
-		frmObj.attr("action", "/sboard/list");
-		frmObj.attr("method", "get");
-		frmObj.submit();
-	});
-	
-});
-
-</script>
 <!-- Main content -->
 <section class="content">
 	<div class="row">
@@ -114,7 +88,69 @@ $(document).ready(function(){
 </section>
 <!-- /.content -->
 
+<!-- handlebars -->
+<script id="template" type="text/x-handlebars-template">
+{{#each .}}
+	<li class="replyLi" data-rno="{{rno}}">
+		<i class="fa fa-comments bg-blue"></i>
+		<div class="timeline-item">
+			<span class="time">
+				<i class="fa fa-clock"></i>{{prettifyDate regdate}}
+			</span>
+			<h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
+			<div class="timeline-body">{{replytext}} </div>
+			<div class="timeline-footer">
+				<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modifyModal">Modify</a>
+			</div>
+		</div>
+	</li>	
+{{/each}}
+</script>
 
+<script>
+Handlebars.registerHelper("prettifyDate", function(timeValue){
+	var dateObj = new Date(timeValue);
+	var year = dateObj.getFullyear();
+	var month = dateObj.getMonth();
+	var date = dateObj.getDate();
+	return year+"/"+month+"/"+date;
+});
+
+var prinDate = function (replyArr, target, templateObject) {
+	var template = Handlebars.compile(templateObject.html());
+	var html = template(replyArr);
+	$(".replyLi").remove();
+	target.after(html);
+}
+</script>
+
+<!-- $(document).ready -->
+<script>
+$(document).ready(function(){
+	var frmObj = $("form[role='form']");
+	
+	console.log(frmObj);
+	
+	$(".btn-warning").on("click", function(){
+		frmObj.attr("action", "/sboard/modifyPage");
+		frmObj.attr("method", "get");
+		frmObj.submit();
+	});
+	
+	$(".btn-danger").on("click", function(){
+		frmObj.attr("action", "/sboard/removePage");
+		frmObj.attr("method", "get");
+		frmObj.submit();
+	});
+	
+	$(".btn-primary").on("click", function(){
+		frmObj.attr("action", "/sboard/list");
+		frmObj.attr("method", "get");
+		frmObj.submit();
+	});
+	
+});
+</script>
 <%@include file="../include/footer.jsp"%>
 
 
