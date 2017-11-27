@@ -130,6 +130,7 @@
 </section>
 <!-- /.content -->
 
+<!-- handlebars -->
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
 <li class="replyLi" data-rno={{rno}}>
@@ -138,7 +139,7 @@
   <span class="time">
     <i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
   </span>
-  <h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
+  <h3 class="timeline-header"><strong>{{rno}}</strong>. {{replyer}}</h3>
   <div class="timeline-body">{{replytext}} </div>
     <div class="timeline-footer">
      <a class="btn btn-primary btn-xs" 
@@ -148,6 +149,7 @@
 </li>
 {{/each}}
 </script>
+<!-- /.handlebars -->
 
 <script>
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
@@ -165,7 +167,6 @@
 		var html = template(replyArr);
 		$(".replyLi").remove();
 		target.after(html);
-
 	}
 
 	var bno = ${boardVO.bno};
@@ -179,7 +180,6 @@
 			printPaging(data.pageMaker, $(".pagination"));
 
 			$("#modifyModal").modal('hide');
-
 		});
 	}
 
@@ -191,12 +191,10 @@
 			str += "<li><a href='" + (pageMaker.startPage - 1)
 					+ "'> << </a></li>";
 		}
-
 		for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
 			var strClass = pageMaker.cri.page == i ? 'class=active' : '';
 			str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
 		}
-
 		if (pageMaker.next) {
 			str += "<li><a href='" + (pageMaker.endPage + 1)
 					+ "'> >> </a></li>";
@@ -218,11 +216,8 @@
 	$(".pagination").on("click", "li a", function(event){
 		
 		event.preventDefault();
-		
 		replyPage = $(this).attr("href");
-		
 		getPage("/replies/"+bno+"/"+replyPage);
-		
 	});
 	
 
@@ -232,7 +227,6 @@
 		 var replytextObj = $("#newReplyText");
 		 var replyer = replyerObj.val();
 		 var replytext = replytextObj.val();
-		
 		  
 		  $.ajax({
 				type:'post',
@@ -254,17 +248,13 @@
 			}});
 	});
 
-
 	$(".timeline").on("click", ".replyLi", function(event){
 		
 		var reply = $(this);
 		
 		$("#replytext").val(reply.find('.timeline-body').text());
 		$(".modal-title").html(reply.attr("data-rno"));
-		
 	});
-	
-	
 
 	$("#replyModBtn").on("click",function(){
 		  
@@ -311,13 +301,10 @@
 	
 </script>
 
-
 <script>
 $(document).ready(function(){
 	
 	var formObj = $("form[role='form']");
-	
-	console.log(formObj);
 	
 	$("#modifyBtn").on("click", function(){
 		formObj.attr("action", "/sboard/modifyPage");
@@ -335,13 +322,7 @@ $(document).ready(function(){
 		formObj.attr("action", "/sboard/list");
 		formObj.submit();
 	});
-	
 });
 </script>
-
-
-
-
-
 
 <%@include file="../include/footer.jsp"%>
