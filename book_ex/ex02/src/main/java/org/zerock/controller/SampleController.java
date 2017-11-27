@@ -42,7 +42,6 @@ public class SampleController {
 			vo.setMno(123);
 			list.add(vo);
 		}
-		
 		return list;
 	}
 	
@@ -57,7 +56,6 @@ public class SampleController {
 			vo.setMno(123);
 			map.put(i, vo);
 		}
-		
 		return map;
 	}
 	
@@ -78,7 +76,6 @@ public class SampleController {
 			vo.setMno(123);
 			list.add(vo);
 		}
-		
 		return new ResponseEntity<>(list, HttpStatus.NOT_FOUND);
 	}
 

@@ -72,6 +72,4 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectOne(namespace+".listSearchCount", cri);
 	}
 	
-	
-	
 }

@@ -60,7 +60,6 @@ public class SearchBoardController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		rttr.addFlashAttribute("msg", "success");
-		
 		return "redirect:/sboard/list";
 	}
 	
@@ -87,9 +86,7 @@ public class SearchBoardController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		rttr.addFlashAttribute("msg", "success");
-		
 		logger.info(rttr.toString());
-		
 		return "redirect:/sboard/list";
 	}
 	
@@ -106,7 +103,6 @@ public class SearchBoardController {
 		service.regist(boardVO);
 		
 		rttr.addFlashAttribute("msg", "success");
-		
 		return "redirect:/sboard/list";
 	}
 }

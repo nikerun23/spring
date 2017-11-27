@@ -44,6 +44,5 @@ public class ReplyServiceImpl implements ReplyService {
 	public int count(Integer bno) throws Exception {
 		return dao.count(bno);
 	}
-	
 
 }
