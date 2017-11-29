@@ -19,7 +19,7 @@
 		<update id="updateMessage">
 			update tbl_message
 			set
-			opendte = now()
+			opendate = now()
 			where mid = #{mid}
 		</update>
 	</mapper>

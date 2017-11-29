@@ -6,7 +6,7 @@ public class MessageVO {
 
 	private Integer mid;
 	private String targetid;
-	private String sender;
+	private Integer sender;
 	private String message;
 	private Date opendate;
 	private Date senddate;
@@ -23,10 +23,10 @@ public class MessageVO {
 	public void setTargetid(String targetid) {
 		this.targetid = targetid;
 	}
-	public String getSender() {
+	public Integer getSender() {
 		return sender;
 	}
-	public void setSender(String sender) {
+	public void setSender(Integer sender) {
 		this.sender = sender;
 	}
 	public String getMessage() {
