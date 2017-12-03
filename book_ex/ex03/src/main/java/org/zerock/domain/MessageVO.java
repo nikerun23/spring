@@ -48,5 +48,4 @@ public class MessageVO {
 		this.senddate = senddate;
 	}
 	
-	
 }

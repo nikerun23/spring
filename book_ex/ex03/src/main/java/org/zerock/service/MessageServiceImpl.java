@@ -29,7 +29,6 @@ public class MessageServiceImpl implements MessageService {
 		pointDAO.updatePoint(uid, 5);
 		
 		return messageDAO.readMessage(mid);
-		
 	}
 
 }

@@ -37,6 +37,7 @@
 	
 	<context:component-scan base-package="org.zerock.persistence"></context:component-scan>
 	<context:component-scan base-package="org.zerock.service"></context:component-scan>
+	<context:component-scan base-package="org.zerock.aop"></context:component-scan>
 	
 	<!-- 자동적인 Proxy 객체 생성 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
