@@ -15,20 +15,21 @@ import org.zerock.service.MessageService;
 @RequestMapping("/messages")
 public class MessageController {
 
-	@Inject
-	private MessageService service;
-	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ResponseEntity<String> addMessage(@RequestBody MessageVO vo) {
-		
-		ResponseEntity<String> entity = null;
-		try {
-			service.addMessage(vo);
-			entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
-		} catch(Exception e) {
-			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
+  @Inject
+  private MessageService service;
+
+  @RequestMapping(value = "/", method = RequestMethod.POST)
+  public ResponseEntity<String> addMessage(@RequestBody MessageVO vo) {
+
+    ResponseEntity<String> entity = null;
+    try {
+      service.addMessage(vo);
+      entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    return entity;
+  }
+
 }
