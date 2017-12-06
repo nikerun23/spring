@@ -31,5 +31,9 @@ public class MessageController {
     }
     return entity;
   }
+  @RequestMapping(value = "/get", method = RequestMethod.GET)
+  public void addMessage2() {
+	 
+  }
 
 }

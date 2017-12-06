@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class SampleAdvice {
 
-	private final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
+	private static final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
 	
 	@Before("execution(* org.zerock.service.MessageService*.*(..))")
 	public void startLog() {
 		
-		logger.info("--------------------------------");
-		logger.info("--------------------------------");
+		logger.info("----------------------------");
+	    logger.info("----------------------------");
 		
 	}
 	
