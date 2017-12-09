@@ -48,4 +48,10 @@ public class MessageVO {
 		this.senddate = senddate;
 	}
 	
+	@Override
+	public String toString() {
+		return "MessageVO [mid=" + mid + ", targetid=" + targetid + ", sender="
+				+ sender + ", message=" + message + ", opendate=" + opendate
+				+ ", senddate=" + senddate + "]";
+	}
 }
