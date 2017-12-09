@@ -1,5 +1,8 @@
 package org.zerock.aop;
 
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -13,11 +16,14 @@ public class SampleAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
 	
 	@Before("execution(* org.zerock.service.MessageService*.*(..))")
-	public void startLog() {
+	public void startLog(JoinPoint jp) {
 		
 		logger.info("----------------------------");
 	    logger.info("----------------------------");
+	    logger.info(Arrays.toString(jp.getArgs()));
 		
 	}
+	
+	
 	
 }
