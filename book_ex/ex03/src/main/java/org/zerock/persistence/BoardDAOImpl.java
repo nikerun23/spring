@@ -81,6 +81,10 @@ public class BoardDAOImpl implements BoardDAO {
 		paramMap.put("amount", amount);
 		session.update(namespace+".updateReplyCnt", paramMap);
 	}
-	
+
+	@Override
+	public void updatViewCnt(Integer bno) throws Exception {
+		session.update(namespace+".updateViewCnt", bno);
+	}
 	
 }

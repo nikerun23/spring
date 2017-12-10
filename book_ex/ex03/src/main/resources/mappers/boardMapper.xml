@@ -127,4 +127,8 @@
 	<update id="updateReplyCnt">
 		update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
 	</update>
+	
+	<update id="updateViewCnt">
+		update tbl_board set viewcnt = viewcnt + 1 where bno = #{bno}
+	</update>
 </mapper>
