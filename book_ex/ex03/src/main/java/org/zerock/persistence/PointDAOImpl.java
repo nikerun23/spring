@@ -14,7 +14,7 @@ public class PointDAOImpl implements PointDAO {
   @Inject
   private SqlSession session;
 
-  private static String namespace = "org.zerock.mapper.PointMapper";
+  private static final String namespace = "org.zerock.mapper.PointMapper";
 
   @Override
   public void updatePoint(String uid, int point) throws Exception {

@@ -12,7 +12,7 @@ public class MessageDAOImpl implements MessageDAO {
 	@Inject
 	SqlSession session;
 	
-	final String namespace = "org.zerock.mapper.MessageMapper";
+	private static final String namespace = "org.zerock.mapper.MessageMapper";
 	
 	@Override
 	public void create(MessageVO vo) throws Exception {
