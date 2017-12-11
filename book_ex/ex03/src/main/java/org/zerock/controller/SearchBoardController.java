@@ -20,10 +20,10 @@ import org.zerock.service.BoardService;
 @RequestMapping("/sboard/*")
 public class SearchBoardController {
 
-	Logger logger = LoggerFactory.getLogger(SearchBoardController.class);
+	private final static Logger logger = LoggerFactory.getLogger(SearchBoardController.class);
 
 	@Inject
-	BoardService service;
+	private BoardService service;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri

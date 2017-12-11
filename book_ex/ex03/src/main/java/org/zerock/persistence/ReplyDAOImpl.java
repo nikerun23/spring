@@ -15,7 +15,7 @@ import org.zerock.domain.ReplyVO;
 public class ReplyDAOImpl implements ReplyDAO {
 
 	@Inject
-	SqlSession session;
+	private SqlSession session;
 	
 	private static final String namespace = "org.zerock.mapper.ReplyMapper";
 	

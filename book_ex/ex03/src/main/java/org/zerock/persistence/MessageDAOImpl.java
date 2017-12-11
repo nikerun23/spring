@@ -10,7 +10,7 @@ import org.zerock.domain.MessageVO;
 public class MessageDAOImpl implements MessageDAO {
 
 	@Inject
-	SqlSession session;
+	private SqlSession session;
 	
 	private static final String namespace = "org.zerock.mapper.MessageMapper";
 	

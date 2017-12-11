@@ -12,10 +12,10 @@ import org.zerock.persistence.PointDAO;
 public class MessageServiceImpl implements MessageService {
 
 	@Inject
-	MessageDAO messageDAO;
+	private MessageDAO messageDAO;
 	
 	@Inject
-	PointDAO pointDAO;
+	private PointDAO pointDAO;
 	
 	@Transactional
 	@Override

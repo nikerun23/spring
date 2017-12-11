@@ -16,7 +16,7 @@ import org.zerock.domain.SearchCriteria;
 public class BoardDAOImpl implements BoardDAO {
 
 	@Inject
-	SqlSession session;
+	private SqlSession session;
 	
 	private static final String namespace = "org.zerock.mapper.BoardMapper";
 	
