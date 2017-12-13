@@ -45,19 +45,26 @@
 								<option value="cw" ${cri.searchType == 'cw' ? 'selected' : ''}>Content or Writer</option>
 								<option value="tcw" ${cri.searchType == 'tcw' ? 'selected' : ''}>Title or Content or Writer</option>
 							</select>
-							<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}">
+							<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}" size="50">
 							<button id="searchBtn">Search</button>
 							<button id="newBtn">New Board</button>
 						</div>
 				</div>
 				<div class="box-body">
 					<table class="table table-bordered">
+						<colgroup>
+							<col width="8%">
+							<col width="*">
+							<col width="15%">
+							<col width="15%">
+							<col width="8%">
+						</colgroup>
 						<tr>
-							<th style="width: 10px;">BNO</th>
+							<th>BNO</th>
 							<th>TITLE</th>
 							<th>WRITER</th>
 							<th>REGDATE</th>
-							<th style="width: 40px;">VIEWCNT</th>
+							<th style="text-align: center;">VIEWCNT</th>
 						</tr>
 						<c:forEach items="${list}" var="boardVO">
 						<tr>
@@ -69,7 +76,7 @@
 							</td>
 							<td><c:out value="${boardVO.writer}"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}"/></td>
-							<td><span class="badge bg-red"><c:out value="${boardVO.viewcnt}"/></span></td>
+							<td style="text-align: center;"><span class="badge bg-red"><c:out value="${boardVO.viewcnt}"/></span></td>
 						</tr>
 						</c:forEach>
 					</table>
