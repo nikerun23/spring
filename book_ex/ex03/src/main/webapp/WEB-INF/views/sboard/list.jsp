@@ -71,7 +71,10 @@
 							<td><c:out value="${boardVO.bno}"/></td>
 							<td>
 								<a href="/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}">
-									<c:out value="${boardVO.title}"/> [<c:out value="${boardVO.replycnt}"/>]
+									<c:out value="${boardVO.title}"/>
+									<c:if test="${boardVO.replycnt ne 0}">
+									[<c:out value="${boardVO.replycnt}"/>]
+									</c:if>
 								</a>
 							</td>
 							<td><c:out value="${boardVO.writer}"/></td>
