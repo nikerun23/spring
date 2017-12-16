@@ -24,16 +24,14 @@ public class UploadController {
 	
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.GET)
 	public void uploadForm() {
-		logger.info("=========== uploadForm ===========");
+		logger.info("=========== uploadForm Page ===========");
 	}
 	
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
 	public String uploadForm(MultipartFile file, Model model) throws Exception {
 	
-		logger.info("getOriginalFilename : "+file.getOriginalFilename());
 		logger.info("getSize : "+file.getSize());
 		logger.info("getContentType : "+file.getContentType());
-		logger.info("getBytes : "+file.getBytes());
 		
 		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
 		logger.info("savedName : "+savedName);
@@ -45,11 +43,8 @@ public class UploadController {
 	private String uploadFile(String originalName, byte[] fileData) throws Exception{
 		
 		UUID uid = UUID.randomUUID();
-		
 		String savedName = uid + "_" + originalName;
-		
 		File target = new File(uploadPath, savedName);
-		
 		FileCopyUtils.copy(fileData, target);
 		
 		return savedName;
