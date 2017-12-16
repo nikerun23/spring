@@ -28,7 +28,7 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
-	public void uploadForm(MultipartFile file, Model model) throws Exception {
+	public String uploadForm(MultipartFile file, Model model) throws Exception {
 	
 		logger.info("getOriginalFilename : "+file.getOriginalFilename());
 		logger.info("getSize : "+file.getSize());
@@ -39,6 +39,7 @@ public class UploadController {
 		logger.info("savedName : "+savedName);
 		model.addAttribute("savedName", savedName);
 		
+		return "uploadResult";
 	}
 	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception{
