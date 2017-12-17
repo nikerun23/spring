@@ -38,6 +38,21 @@
 			var files = event.originalEvent.dataTransfer.files;
 			var file = files[0];
 			console.log(file);
+			var formData = new FormData();
+			
+			formData.append("file", file);
+			
+			$.ajax({
+				url : "/uploadAjax",
+				data : formData,
+				dataType : 'text',
+				processData : false, // FormData 전송을 위한 설
+				contentType : false, // FormData 전송을 위한 설
+				type : 'POST',
+				success : function(data) {
+					alert(data);
+				}
+			});
 		});
 		
 	</script>
