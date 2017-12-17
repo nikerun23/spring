@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.FileCopyUtils;
 
 public class UploadFileUtils {
 
@@ -18,9 +20,29 @@ public class UploadFileUtils {
 	
 	public static String uploadFile(String uploadPath, 
 			String originalName, 
-			byte[] fileData) {
+			byte[] fileData) throws Exception {
 		
-		return null;
+		UUID uid = UUID.randomUUID();
+		
+		String savedName = uid + originalName; //UUID 파일명
+		
+		String savedPath = calcPath(uploadPath); // /년/월/일 파일경로
+		
+		File target = new File(uploadPath + savedPath, savedName);
+		
+		FileCopyUtils.copy(fileData, target);
+		
+		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
+		
+		String uploadFileName = null;
+		
+		if(MediaUtils.getMediaType(formatName) != null) {
+			uploadFileName = makeThumbnail(uploadPath, savedPath, savedName);
+		} else {
+			uploadFileName = makeIcon(uploadPath, savedPath, savedName);
+		}
+		
+		return uploadFileName;
 	}
 	
 	private static String calcPath(String uploadPath) {
@@ -33,7 +55,7 @@ public class UploadFileUtils {
 		
 		makeDir(uploadPath, yearPath, monthPath, datePath);
 		
-		logger.info(datePath);
+		logger.info("datePath : "+datePath);
 		return datePath;
 	}
 	
@@ -50,14 +72,14 @@ public class UploadFileUtils {
 	}
 	
 	private static String makeThumbnail(String uploadPath,
-			String path,
+			String datePath, // /년/월/일 파일경로
 			String fileName) throws Exception {
 		
-		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
+		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + datePath, fileName));
 		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
 		
-		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
+		String thumbnailName = uploadPath + datePath + File.separator + "s_" + fileName;
 		
 		File newFile = new File(thumbnailName);
 		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -65,5 +87,14 @@ public class UploadFileUtils {
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 		
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+	}
+	
+	private static String makeIcon(String uploadPath,
+			String datePath, // /년/월/일 파일경로
+			String fileName) throws Exception {
+		
+		String iconName = uploadPath + datePath + fileName;
+		
+		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 }
