@@ -40,6 +40,11 @@ public class UploadController {
 		return "uploadResult";
 	}
 	
+	@RequestMapping(value = "/uploadAjax", method = RequestMethod.GET)
+	public void uploadAjax() {
+		
+	}
+	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception{
 		
 		UUID uid = UUID.randomUUID();
