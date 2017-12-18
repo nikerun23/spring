@@ -23,7 +23,7 @@ public class UploadFileUtils {
 		
 		UUID uid = UUID.randomUUID();
 		
-		String savedName = uid + originalName; //UUID 파일명
+		String savedName = uid + originalName; // UUID 파일명
 		String savedPath = calcPath(uploadPath); // /년/월/일 파일경로
 		File target = new File(uploadPath + savedPath, savedName);
 		
