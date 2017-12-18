@@ -2,7 +2,6 @@ package org.zerock.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
@@ -25,15 +24,12 @@ public class UploadFileUtils {
 		UUID uid = UUID.randomUUID();
 		
 		String savedName = uid + originalName; //UUID 파일명
-		
 		String savedPath = calcPath(uploadPath); // /년/월/일 파일경로
-		
 		File target = new File(uploadPath + savedPath, savedName);
 		
 		FileCopyUtils.copy(fileData, target);
 		
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
-		
 		String uploadFileName = null;
 		
 		if(MediaUtils.getMediaType(formatName) != null) {
@@ -41,7 +37,6 @@ public class UploadFileUtils {
 		} else {
 			uploadFileName = makeIcon(uploadPath, savedPath, savedName);
 		}
-		
 		return uploadFileName;
 	}
 	
@@ -76,9 +71,7 @@ public class UploadFileUtils {
 			String fileName) throws Exception {
 		
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + datePath, fileName));
-		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
-		
 		String thumbnailName = uploadPath + datePath + File.separator + "s_" + fileName;
 		
 		File newFile = new File(thumbnailName);
