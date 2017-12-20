@@ -62,6 +62,13 @@ public class UploadController {
 				uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
 	}
 	
+	@ResponseBody
+	@RequestMapping("/diplayfile")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception{
+		
+		return null;
+	}
+	
 	private String uploadFile(String originalName, byte[] fileData) throws Exception{
 		
 		UUID uid = UUID.randomUUID();
