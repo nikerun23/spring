@@ -69,7 +69,7 @@ public class UploadController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/diplayfile")
+	@RequestMapping("/diplayFile")
 	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception{
 		
 		InputStream in = null;
