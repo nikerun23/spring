@@ -86,6 +86,7 @@ public class UploadController {
 			
 			if (mType != null) {
 				headers.setContentType(mType); // 이미지 타입의 MIME타입을 지정
+				logger.info("mType : " + mType);
 			} else {
 				fileName = fileName.substring(fileName.indexOf("_")+1);
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // MIME타입을 다운로드 용으로 사용되는 application/octet-stream 타입으로 지
