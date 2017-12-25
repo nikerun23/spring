@@ -23,7 +23,7 @@ public class UploadFileUtils {
 		
 		UUID uid = UUID.randomUUID();
 		
-		String savedName = uid + originalName; // UUID 파일명
+		String savedName = uid + "_" + originalName; // UUID 파일명
 		String savedPath = calcPath(uploadPath); // /년/월/일 파일경로
 		File target = new File(uploadPath + savedPath, savedName);
 		
@@ -37,6 +37,7 @@ public class UploadFileUtils {
 		} else {
 			uploadFileName = makeIcon(uploadPath, savedPath, savedName);
 		}
+		logger.info("uploadFileName : " + uploadFileName);
 		return uploadFileName;
 	}
 	
@@ -85,7 +86,7 @@ public class UploadFileUtils {
 			String datePath, // /년/월/일 파일경로
 			String fileName) throws Exception {
 		
-		String iconName = uploadPath + datePath + fileName;
+		String iconName = uploadPath + datePath + File.separator + fileName;
 		
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
