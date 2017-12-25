@@ -46,8 +46,8 @@
 				url : "/uploadAjax",
 				data : formData,
 				dataType : 'text',
-				processData : false, // FormData 전송을 위한 설
-				contentType : false, // FormData 전송을 위한 설
+				processData : false, // FormData 전송을 위한 설정
+				contentType : false, // FormData 전송을 위한 설정
 				type : 'POST',
 				success : function(data) {
 					alert(data);
@@ -55,7 +55,7 @@
 					
 					if (checkImageType(data)) {
 						str = "<div>"
-							+ "<img src='displayFile?fileName=" + data + "'/>"
+							+ "<img src='displayFile?fileName=" + data + "'/></br>"
 							+ data + "</div>";
 					} else {
 						str = "<div>"

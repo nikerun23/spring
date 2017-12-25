@@ -43,7 +43,6 @@ public class UploadFileUtils {
 	private static String calcPath(String uploadPath) {
 		
 		Calendar cal = Calendar.getInstance();
-		logger.info("MONTH : " + cal.get(Calendar.MONTH));
 		String yearPath = File.separator + cal.get(Calendar.YEAR);
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
@@ -51,14 +50,14 @@ public class UploadFileUtils {
 		makeDir(uploadPath, yearPath, monthPath, datePath);
 		
 		logger.info("datePath : "+datePath);
-		return datePath;
+		return datePath; ///년/월/일
 	}
 	
 	private static void makeDir(String uploadPath, String... paths) {
 		if(new File(paths[paths.length-1]).exists()) {
 			return;
 		}
-		for (String path : paths) {
+		for (String path : paths) { // 경로의 폴더가 없으면 폴더 생성
 			File dirPath = new File(uploadPath + path);
 			if(! dirPath.exists()) {
 				dirPath.mkdir();

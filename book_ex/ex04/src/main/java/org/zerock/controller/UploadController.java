@@ -89,7 +89,7 @@ public class UploadController {
 				logger.info("mType : " + mType);
 			} else {
 				fileName = fileName.substring(fileName.indexOf("_")+1);
-				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // MIME타입을 다운로드 용으로 사용되는 application/octet-stream 타입으로 지
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // MIME타입을 다운로드 용으로 사용되는 application/octet-stream 타입으로 지정
 				headers.add("Content-Disposition", "attachment; filename=\"" +
 						new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\""); // 다운로드시에 파일명에 한글 인코딩 처리를 해서 전송
 			}
