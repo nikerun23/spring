@@ -55,8 +55,9 @@
 					
 					if (checkImageType(data)) {
 						str = "<div>"
-							+ "<img src='displayFile?fileName=" + data + "'/></br>"
-							+ data + "</div>";
+							+ "<a href='displayFile?fileName=" + getImageLink(data) + "'>"
+							+ "<img src='displayFile?fileName=" + data + "'/></a></br>"
+							+ getOriginalName(data) + "</div>";
 					} else {
 						str = "<div><a href='displayFile?fileName=" + data + "'>"
 							+ getOriginalName(data) + "</a></div>";
@@ -72,10 +73,19 @@
 		}
 		
 		function getOriginalName(fileName) {
-			if (checkImageType(fileName)) return;
+			//if (checkImageType(fileName)) return;
 			
-			var idx = fileName.indexOf("_") + 1;
+			var idx = fileName.lastIndexOf("_") + 1;
 			return fileName.substr(idx);
+		}
+		
+		function getImageLink(fileName) {
+			if (! checkImageType(fileName)) return;
+			
+			var front = fileName.substr(0, 12);
+			var end = fileName.substr(14);
+			console.log("front + end : " + front + end)
+			return front + end;
 		}
 		
 	</script>
