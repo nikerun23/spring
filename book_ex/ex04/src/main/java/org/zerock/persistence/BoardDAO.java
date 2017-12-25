@@ -33,4 +33,5 @@ public interface BoardDAO {
 	public void updatViewCnt(Integer bno)throws Exception;
 	
 
+	public void addAttach(String fileName)throws Exception;
 }
