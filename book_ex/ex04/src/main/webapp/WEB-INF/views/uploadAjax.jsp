@@ -58,8 +58,8 @@
 							+ "<img src='displayFile?fileName=" + data + "'/></br>"
 							+ data + "</div>";
 					} else {
-						str = "<div>"
-							+ data + "</div>";
+						str = "<div><a href='displayFile?fileName=" + data + "'>"
+							+ getOriginalName(data) + "</a></div>";
 					}
 					$(".uploadList").append(str);
 				}
@@ -69,6 +69,13 @@
 		function checkImageType(fileName) {
 			var pattern = /jpg|gif|png|jpeg/i; // i 는 대소문자 구분없음
 			return fileName.match(pattern);
+		}
+		
+		function getOriginalName(fileName) {
+			if (checkImageType(fileName)) return;
+			
+			var idx = fileName.indexOf("_") + 1;
+			return fileName.substr(idx);
 		}
 		
 	</script>
