@@ -135,4 +135,16 @@
 	<insert id="addAttach">
 		insert into tbl_attach(fullname, bno) values (#{fileName}, LAST_INSERT_ID()) -- LAST_INSERT_ID() : 바로직전에 생성된 PK를 리턴한다.
 	</insert>
+	
+	<select id="getAttach" resultType="String">
+		select fullname from tbl_attach where bno = #{bno} order by regdate
+	</select>
+	
+	<delete id="deleteAttach">
+		delete from tbl_attach where bno = #{bno}
+	</delete>
+	
+	<insert id="replaceAttach">
+		insert into tbl_attach (fullname, bno) values (#{fullName}, #{bno})
+	</insert>
 </mapper>
