@@ -31,4 +31,13 @@
 		<beans:constructor-arg value="/Users/lee/Documents/workspace-sts/book_ex/ex04/src/main/webapp/resources/files"></beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/doA"/>
+			<mapping path="/doB"/>
+			<beans:ref bean="sampleInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
