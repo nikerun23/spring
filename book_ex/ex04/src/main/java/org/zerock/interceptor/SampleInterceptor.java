@@ -19,6 +19,13 @@ public class SampleInterceptor extends HandlerInterceptorAdapter{
 		
 		System.out.println("post handle................");
 		
+		Object result = modelAndView.getModel().get("result");
+		
+		if(result != null) {
+			request.getSession().setAttribute("result", result);
+			response.sendRedirect("/doA");
+		}
+		
 	}
 	
 	@Override
