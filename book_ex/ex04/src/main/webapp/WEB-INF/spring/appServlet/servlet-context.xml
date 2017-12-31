@@ -32,6 +32,7 @@
 	</beans:bean>
 	
 	<!-- 인터셉터 설정 -->
+	<beans:bean id="sampleInterceptor" class="org.zerock.interceptor.SampleInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/doA"/>
