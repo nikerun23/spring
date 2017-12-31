@@ -22,6 +22,7 @@ public class SampleInterceptor extends HandlerInterceptorAdapter{
 		Object result = modelAndView.getModel().get("result");
 		
 		if(result != null) {
+			System.out.println("result HttpSession SAVE........");
 			request.getSession().setAttribute("result", result);
 			response.sendRedirect("/doA");
 		}
