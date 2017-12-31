@@ -35,5 +35,24 @@ public class HomeController {
 		
 		return "home";
 	}
+	/**
+	* Interceptor TEST
+	*/
+	@RequestMapping(value = "/doA", method = RequestMethod.GET)
+	public String doA(Locale locale, Model model) {
+		
+		System.out.println("doA..............................");
+		
+		return "home";
+	}
 	
+	@RequestMapping(value = "/doB", method = RequestMethod.GET)
+	public String doB(Locale locale, Model model) {
+		
+		System.out.println("doB..............................");
+		
+		model.addAttribute("result", "DOB RESULT");
+		
+		return "home";
+	}
 }
