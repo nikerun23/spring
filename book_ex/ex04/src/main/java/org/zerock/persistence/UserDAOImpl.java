@@ -11,7 +11,7 @@ import org.zerock.dto.LoginDTO;
 public class UserDAOImpl implements UserDAO {
 
 	@Inject
-	SqlSession session;
+	private SqlSession session;
 	
 	@Inject
 	private final static String namespace = "org.zerock.mapper.UserMapper";
