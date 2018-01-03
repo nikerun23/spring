@@ -16,6 +16,24 @@ import org.zerock.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-
+	@Inject
+	UserService service;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void loginGet(@ModelAttribute("dto") LoginDTO dto) {
+		
+	}
+	
+	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
+	public void loginPost(LoginDTO dto, HttpSession session, Model model) throws Exception {
+		
+		UserVO vo = service.login(dto);
+		
+		if (vo == null) {
+			return;
+		}
+		
+		model.addAttribute("userVO", vo);
+	}
 	
 }
