@@ -33,22 +33,21 @@
 	
 	<!-- 인터셉터 설정 -->
 	<beans:bean id="sampleInterceptor" class="org.zerock.interceptor.SampleInterceptor"></beans:bean>
+	<beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor"></beans:bean>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/doA"/>
 			<mapping path="/doB"/>
 			<beans:ref bean="sampleInterceptor"/>
 		</interceptor>
-	</interceptors>
 	
-	<beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor"></beans:bean>
-	<beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor"></beans:bean>
-	
-	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
 		<interceptor>
 			<mapping path="/sboard/register"/>
 			<mapping path="/sboard/modifyPage"/>
