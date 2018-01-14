@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.zerock.domain.UserVO;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
@@ -29,11 +30,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (userVO != null) {
 			logger.info("new Login Success........");
 			session.setAttribute(LOGIN, userVO);
-
 			Object dest = session.getAttribute("dest");
+			logger.info("dest : " + dest + "........");
 			response.sendRedirect(dest != null ? (String)dest : "/");
 		}
-		
 	}
 	
 	@Override

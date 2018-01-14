@@ -32,7 +32,6 @@ public class UserController {
 		if (vo == null) {
 			return;
 		}
-		
 		model.addAttribute("userVO", vo);
 	}
 	
