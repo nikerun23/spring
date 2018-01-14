@@ -70,7 +70,7 @@
 			  <ul class="mailbox-attachments clearfix uploadedList"></ul>
 
 			  <div class="box-footer">
-			  <c:if test="{login.uid == boardVO.writer}">
+			  <c:if test="${login.uid == boardVO.writer}">
 			    <button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
 			    <button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
 			  </c:if>
