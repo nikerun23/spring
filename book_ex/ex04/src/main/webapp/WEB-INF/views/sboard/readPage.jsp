@@ -92,9 +92,10 @@
 				<div class="box-header">
 					<h3 class="box-title">ADD NEW REPLY</h3>
 				</div>
+				<c:if test="${not empty login}">
 				<div class="box-body">
 					<label for="exampleInputEmail1">Writer</label> <input
-						class="form-control" type="text" placeholder="USER ID"
+						class="form-control" type="text" placeholder="USER ID" value="${login.uid}" readonly="readonly"
 						id="newReplyWriter"> <label for="exampleInputEmail1">Reply
 						Text</label> <input class="form-control" type="text"
 						placeholder="REPLY TEXT" id="newReplyText">
@@ -105,6 +106,14 @@
 					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD
 						REPLY</button>
 				</div>
+				</c:if>
+				
+				<c:if test="${empty login}">
+				<div class="box-body">
+					<div><a href="javascript:goLogin();">Login Please</a></div>
+				</div>
+				</c:if>
+				
 			</div>
 
 
