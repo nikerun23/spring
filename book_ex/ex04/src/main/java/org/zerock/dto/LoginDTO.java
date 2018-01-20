@@ -18,7 +18,7 @@ public class LoginDTO {
 	public void setUpw(String upw) {
 		this.upw = upw;
 	}
-	public boolean isUseCookis() {
+	public boolean isUseCookie() {
 		return useCookis;
 	}
 	public void setUseCookis(boolean useCookis) {
