@@ -32,7 +32,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	      logger.info("new login success");
 	      session.setAttribute(LOGIN, userVO);
 
-	      if (request.getParameter("useCookie") != null) { // useCookie 쿠키가 없으면 생성
+	      if (request.getParameter("useCookis") != null) { // useCookis 쿠키가 없으면 생성
 
 	        logger.info("remember me................");
 	        Cookie loginCookie = new Cookie("loginCookie", session.getId()); // 쿠키 생성

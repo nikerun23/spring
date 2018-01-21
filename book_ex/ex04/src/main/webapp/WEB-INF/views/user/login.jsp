@@ -43,7 +43,7 @@
     <div class="col-xs-8">    
       <div class="checkbox icheck">
         <label>
-          <input type="checkbox" name="useCookie"> Remember Me
+          <input type="checkbox" name="useCookis"> Remember Me
         </label>
       </div>                        
     </div><!-- /.col -->
