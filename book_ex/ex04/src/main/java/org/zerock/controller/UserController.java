@@ -45,9 +45,9 @@ public class UserController {
 		
 		  int amount = 60 * 60 * 24 * 7;
 		
-		  Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+		  Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount)); // 밀리세컨즈로 쿠키 유효기간설정
 		
-		  service.keepLogin(vo.getUid(), session.getId(), sessionLimit);
+		  service.keepLogin(vo.getUid(), session.getId(), sessionLimit); // 로그인 쿠키를 DB에 저장
 		}
 		
 	}

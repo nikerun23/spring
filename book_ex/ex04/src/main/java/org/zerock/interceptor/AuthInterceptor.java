@@ -30,13 +30,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         
         logger.info("current user is not logined");
         
-        saveDest(request);
+        saveDest(request); // 리다이렉트를 위하여 접속을 원하는 URI를 저장
         
-        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); // loginCookie를 가져옵니다.
         
         if(loginCookie != null) { 
           
-          UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
+          UserVO userVO = service.checkLoginBefore(loginCookie.getValue()); // DB에 저장되어있는 계정정보를 쿠키ID로 가져온다. 
           
           logger.info("USERVO: " + userVO);
           
@@ -47,7 +47,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
           
         }
 
-        response.sendRedirect("/user/login");
+        response.sendRedirect("/user/login"); // HttpSession, loginCookie 둘다 없으면 로그인 페이지로 이동
         return false;
       }
     return true;
