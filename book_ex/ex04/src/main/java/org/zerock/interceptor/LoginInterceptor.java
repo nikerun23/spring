@@ -32,16 +32,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	      logger.info("new login success");
 	      session.setAttribute(LOGIN, userVO);
 
-	      if (request.getParameter("useCookie") != null) {
+	      if (request.getParameter("useCookie") != null) { // useCookie 쿠키가 없으면 생성
 
 	        logger.info("remember me................");
-	        Cookie loginCookie = new Cookie("loginCookie", session.getId());
+	        Cookie loginCookie = new Cookie("loginCookie", session.getId()); // 쿠키 생성
 	        loginCookie.setPath("/");
-	        loginCookie.setMaxAge(60 * 60 * 24 * 7);
+	        loginCookie.setMaxAge(60 * 60 * 24 * 7); // 7일 보관
 	        response.addCookie(loginCookie);
 	      }
 	      // response.sendRedirect("/");
-	      Object dest = session.getAttribute("dest");
+	      Object dest = session.getAttribute("dest"); // 요청한 URL로 리다이렉트
 
 	      response.sendRedirect(dest != null ? (String) dest : "/");
 	    }
