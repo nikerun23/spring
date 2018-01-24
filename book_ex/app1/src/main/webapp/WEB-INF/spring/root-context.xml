@@ -21,8 +21,11 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
+	<mybatis-spring:scan base-package="org.aerock.persistence"/>
+	<!-- 
 	<bean id="sampleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="org.zerock.persistence.SampleMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	 -->
 </beans>
