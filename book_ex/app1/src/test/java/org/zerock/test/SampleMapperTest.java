@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.persistence.SampleMapper;
@@ -16,16 +18,19 @@ public class SampleMapperTest {
 	@Inject
 	private SampleMapper mapper;
 	
+	@Inject
+	private final static Logger logger = LoggerFactory.getLogger(SampleMapperTest.class);
+	
 	@Ignore
 	@Test
 	public void testTime() {
-		System.out.println("------- getName() : "+mapper.getClass().getName());
-		System.out.println("------- getTime() : "+mapper.getTime());
+		logger.info("------- getName() : "+mapper.getClass().getName());
+		logger.info("------- getTime() : "+mapper.getTime());
 	}
 	
 	@Test
 	public void testMail() {
 		String email = mapper.getEmail("user00", "user00");
-		System.out.println("------- Email : " + email);
+		logger.info(email);
 	}
 }
