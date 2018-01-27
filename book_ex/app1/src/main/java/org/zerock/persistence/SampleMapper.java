@@ -2,6 +2,7 @@ package org.zerock.persistence;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 
 public interface SampleMapper {
 
@@ -12,4 +13,7 @@ public interface SampleMapper {
 	public String getEmail(@Param("id") String id, @Param("pw") String pw);
 	
 	public String getUserName(@Param("id") String id, @Param("pw") String pw);
+	
+	@SelectProvider(type=SampleProvider.class, method="searchUserName")
+	public String search(@Param("type") String type, @Param("keyword") String keyword);
 }
