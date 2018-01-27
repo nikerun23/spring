@@ -11,4 +11,5 @@ public interface SampleMapper {
 	@Select("select email from tbl_member where userid = #{id} and userpw = #{pw}")
 	public String getEmail(@Param("id") String id, @Param("pw") String pw);
 	
+	public String getUserName(@Param("id") String id, @Param("pw") String pw);
 }
