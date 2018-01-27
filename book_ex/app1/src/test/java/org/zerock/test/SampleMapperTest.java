@@ -20,24 +20,28 @@ public class SampleMapperTest {
 	
 	@Inject
 	private final static Logger logger = LoggerFactory.getLogger(SampleMapperTest.class);
-	
 	@Ignore
 	@Test
 	public void testTime() {
 		logger.info("------- getName() : "+mapper.getClass().getName());
 		logger.info("------- getTime() : "+mapper.getTime());
 	}
-	
 	@Ignore
 	@Test
 	public void testMail() {
 		String email = mapper.getEmail("user00", "user00");
 		logger.info(email);
 	}
-	
+	@Ignore
 	@Test
 	public void testUserName() {
 		String name = mapper.getUserName("user00", "user00");
+		logger.info(name);
+	}
+	
+	@Test
+	public void testSearch() {
+		String name = mapper.search("id", "user00");
 		logger.info(name);
 	}
 }
