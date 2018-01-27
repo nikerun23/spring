@@ -28,9 +28,16 @@ public class SampleMapperTest {
 		logger.info("------- getTime() : "+mapper.getTime());
 	}
 	
+	@Ignore
 	@Test
 	public void testMail() {
 		String email = mapper.getEmail("user00", "user00");
 		logger.info(email);
+	}
+	
+	@Test
+	public void testUserName() {
+		String name = mapper.getUserName("user00", "user00");
+		logger.info(name);
 	}
 }

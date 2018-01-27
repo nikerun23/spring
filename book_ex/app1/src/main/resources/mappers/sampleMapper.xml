@@ -7,10 +7,10 @@
 
 	<select id="getUserName" resultType="String">
 		select 
-		uname
+		username
 		from tbl_member
-		where uid = #{id}
-			and upw = #{pw}
+		where userid = #{id}
+			and userpw = #{pw}
 	</select>
 	
 </mapper>
