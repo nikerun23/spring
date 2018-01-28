@@ -40,11 +40,11 @@ public class App2ApplicationTests {
 		System.out.println(con);
 		con.close();
 	}
-	
+	@Ignore
 	@Test
 	public void testSqlSession() throws Exception{
 		System.out.println("++++++++++++++++++++++");
 		System.out.println(sqlSession);
 	}
-
+	
 }
