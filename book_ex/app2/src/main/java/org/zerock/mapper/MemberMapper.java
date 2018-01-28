@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.zerock.domain.MemberVO;
@@ -22,4 +23,6 @@ public interface MemberMapper {
 	
 	@Delete("delete from tbl_member where userid = #{userid}")
 	public void delete(String userid)throws Exception;
+	
+	public MemberVO login(@Param("userid")String userid, @Param("userpw")String userpw)throws Exception;
 }
