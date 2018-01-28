@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class App2ApplicationTests {
 
 	@Autowired
-	DataSource ds;
+	private DataSource ds;
 	
+	@Autowired
+	private SqlSessionFactory sqlSession;
+	
+	@Ignore
 	@Test
 	public void contextLoads() {
 	}
 	
+	@Ignore
 	@Test
 	public void testConnection() throws SQLException {
 		System.out.println("++++++++++++++++++++++");
@@ -32,6 +39,12 @@ public class App2ApplicationTests {
 		System.out.println("++++++++++++++++++++++");
 		System.out.println(con);
 		con.close();
+	}
+	
+	@Test
+	public void testSqlSession() throws Exception{
+		System.out.println("++++++++++++++++++++++");
+		System.out.println(sqlSession);
 	}
 
 }
