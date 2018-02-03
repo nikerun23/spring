@@ -10,5 +10,10 @@
 
 	<h1>${msg}</h1>
 	
+	<form method="post">
+		<p>USER NAME : <input type="text" name="username"/></p>
+		<p>ADDRESS : <input type="text" name="address"/></p>
+	</form>
+	
 </body>
 </html>
