@@ -13,6 +13,7 @@
 	<form method="post">
 		<p>USER NAME : <input type="text" name="username"/></p>
 		<p>ADDRESS : <input type="text" name="address"/></p>
+		<p><input type="submit" /></p>
 	</form>
 	
 </body>
