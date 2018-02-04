@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Serving Web Content</title>
+</head>
+<body>
+
+	<p th:text="'HELLO, ' + ${name} + '!'" />
+
+	<ul>
+		<li th:each="data : ${list}" th:text="${data}"></li>
+	</ul>
+
+</body>
+</html>
