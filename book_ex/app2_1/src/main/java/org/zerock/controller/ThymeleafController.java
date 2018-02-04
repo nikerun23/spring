@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ThymeleafController {
 
-	@RequestMapping("listTest")
+	@RequestMapping("/listTest")
 	public void sendData(Model model) {
 		
 		List<String> list = new ArrayList<>();
