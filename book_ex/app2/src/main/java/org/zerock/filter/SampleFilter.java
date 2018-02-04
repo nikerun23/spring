@@ -25,6 +25,7 @@ public class SampleFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		System.out.println(req.getRequestURI());
+		System.out.println(req.getQueryString());
 		
 		System.out.println("------------------------------");
 
